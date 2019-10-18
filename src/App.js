@@ -7,7 +7,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   Home,
   Admin,
-  Lobby
+  Lobby,
+  Gameplay
 } from 'app/views';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route exact path='/' component={Home}/>
           <Route exact path='/admin' component={Admin}/>
           <Route exact path='/lobby/:lobbyId' component={Lobby}/>
+          <Route exact path='/gameplay/:lobbyId' component={Gameplay}/>
         </Switch>
       </Router>
     </div>
