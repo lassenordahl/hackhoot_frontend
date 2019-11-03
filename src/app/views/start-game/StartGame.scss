@@ -13,6 +13,14 @@
     width: 50vw;
     border-radius: 10px;
     flex-flow: column;
+    position: relative;
+
+    .timer {
+      position: absolute;
+      top: 0;
+      right: 20px;
+      font-size: 4em;
+    }
 
     & > div {
       margin: 5em;
@@ -32,7 +40,7 @@
       text-align: center;
 
       .game-id {
-        font-size: 4em;
+        font-size: 3em;
       }
 
       button {

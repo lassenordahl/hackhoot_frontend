@@ -1,34 +1,37 @@
 import React, { useState }  from "react";
 import { Link } from "react-router-dom";
+import axios from 'axios';
 import './CreateQuestions.scss';
 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-function CreateQuestions() {
+function CreateQuestions(props) {
 
+  const [timeLimit, setTimeLimit] = useState([]);
   const [allQuestions, setAllQuestions] = useState([]);
   const [question, setQuestion] = useState(
     {
-      question: "",
-      A: "",
-      B: "",
-      C: "",
-      D: "",
-      answer: ""
+      "question": "",
+      "A": "",
+      "B": "",
+      "C": "",
+      "D": "",
+      "answer": ""
     }
   );
   
   function addQuestion() {
     setAllQuestions([...allQuestions, question]);
     setQuestion({
-      question: "",
-      A: "",
-      B: "",
-      C: "",
-      D: "",
-      answer: ""
+      "question": "",
+      "A": "",
+      "B": "",
+      "C": "",
+      "D": "",
+      "answer": ""
     })
+    createQuestion(question)
   }
 
   function handleInputChange(e) {
@@ -39,7 +42,21 @@ function CreateQuestions() {
   }
 
   function handleSubmit(e) {
-    alert(e.target.value)
+
+    // TODO: POST /creategame/ --> get lobbyId from response and navigate to start-game
+    let lobbyId = 1
+    props.history.push('/admin/start-game/' + lobbyId)
+  }
+
+  function createQuestion(q) {
+    // TODO: make this work lol
+    axios.post('localhost:5000/createquestion', {q})
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log("error");
+      });
   }
 
   return (
@@ -95,9 +112,9 @@ function CreateQuestions() {
                 ))}
               </div>
 
-              <Link to="/admin/start-game/">
-                <Button className="create-game-btn" type="submit">Start Game</Button>
-              </Link>
+              
+              <Button onClick={handleSubmit} className="create-game-btn" type="submit">Start Game</Button>
+
             </Form>
           </div>
         </div>
