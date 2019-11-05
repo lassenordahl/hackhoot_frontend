@@ -1,4 +1,5 @@
 import React, { useState }  from "react";
+import { Link } from "react-router-dom";
 import './Admin.scss';
 
 import Form from 'react-bootstrap/Form';
@@ -29,7 +30,9 @@ function Admin() {
                   Make sure to make it not too scary for the kids
                 </Form.Text>
               </Form.Group>
-              <Button type="submit">Create Game</Button>
+              <Link to="/admin/create-questions">
+                <Button type="submit">Create Game</Button>
+              </Link>
             </Form>
           </div>
         </div>
